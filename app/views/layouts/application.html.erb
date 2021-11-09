@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MeetupGeneva</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+  </head>
+
+  <body>
+
+ <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+      <a class="navbar-brand" href="<%= root_path %>">Meetup Geneva </a>
+  
+
+      <div class="collapse navbar-collapse" id="navbarsExample09">
+        <ul class="navbar-nav mr-auto">
+    
+          <% if user_signed_in? %>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="<%= edit_user_registration_path %>">Bon retour parmis nous <%= current_user.username%></a>
+          </li class="nav-item">
+
+          <li class="nav-item">
+            <a class="nav-link" href="<%= %>">Team</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="<%= events_path %>">Events</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="<%=  %>">Contact</a>
+          </li>
+
+          <li class="nav-link" >
+            <%= link_to "Se déconnecter", destroy_user_session_path, data: {method: :delete} %>
+          </li>
+
+          <% else %>
+
+          <li class="nav-item">
+            <a class="nav-link" href="<%=  %>">Contact</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_registration_path %>">Sign up</a>
+          </li class="nav-item">
+          
+          <li class="nav-link">
+            <%= link_to "Sign in", new_user_session_path %>
+          </li>
+           
+          <%end %>
+          
+
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    <%= yield %>
+    </div>
+
+    <%= javascript_include_tag 'application' %>
+  </body>
+</html>
